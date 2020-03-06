@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <h1 style="text-align:center">Protect Your Health Data: Check App Security Before You Download</h1>
+
+        <style>
+            table {
+              border-collapse: collapse;
+            }
+            
+            table, td, th {
+              border: 1px solid black;
+            }
+            table {
+            width: 100%;
+            }
+
+            th {
+            height: 50px;
+            }
+
+            th {
+            text-align: center;
+            }
+            </style>
+            </head>
+            <body>
+
+            
+            <table>
+              <tr>
+                <th>App Name</th>
+                <th>App Score</th>
+              </tr>
+              <tr>
+                <td>Peter</td>
+                <td>Griffin</td>
+              </tr>
+              <tr>
+                <td>Lois</td>
+                <td>Griffin</td>
+              </tr>
+            </table>
+            
+            <?php
+
+    
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+
+                $dbname = "healthapps";
+                
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+                $sql = "SELECT ID, AppName, AppScore FROM apps";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo " - Name: " . $row["AppName"]. " " . $row["AppScore"]. "<br>";
+                    }
+                } else {
+                    echo "0 results";
+                }
+
+
+
+                $conn->close();
+
+            ?>
+            
+            </body>
+
+</html>
